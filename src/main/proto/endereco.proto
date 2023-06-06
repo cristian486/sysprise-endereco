@@ -1,0 +1,37 @@
+syntax="proto3";
+package pb;
+option java_multiple_files = true;
+
+message CriarEnderecoRequest {
+  string rua = 1;
+  uint32 numero = 2;
+  string bairro = 3;
+  string complemento = 4;
+  string cep = 5;
+  uint64 cidadeId = 6;
+}
+
+message Endereco {
+  uint64 id = 1;
+  string rua = 2;
+  uint32 numero = 3;
+  string bairro = 4;
+  string complemento = 5;
+  string cep = 6;
+  uint64 cidadeId = 7;
+  uint64 estado_id = 8;
+}
+
+message EnderecoId {
+  uint64 id = 1;
+}
+
+message blank{
+}
+
+service EnderecoService {
+  rpc CreateEndereco(CriarEnderecoRequest) returns (EnderecoId) {}
+  rpc GetEnderecoById(EnderecoId) returns (Endereco) {}
+  rpc DeleteEnderecoById(EnderecoId) returns (blank) {}
+  rpc UpdateEndereco(Endereco) returns (blank) {}
+}
